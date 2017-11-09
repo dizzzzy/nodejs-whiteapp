@@ -1,3 +1,4 @@
-db.js
+config.js
 node_modules/
 .idea/
+.env
