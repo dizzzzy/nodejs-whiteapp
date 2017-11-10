@@ -1,5 +1,4 @@
 # [START app_yaml]
 runtime: nodejs
 env: flex
-app_id: project1-185606
 # [END app_yaml]
