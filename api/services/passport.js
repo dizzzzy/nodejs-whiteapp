@@ -1,5 +1,8 @@
 const passport = require('passport'),
-    GoogleStrategy = require('passport-google-oauth20').Strategy;
+    GoogleStrategy = require('passport-google-oauth20').Strategy,
+    mongoose = require('mongoose');
+
+const Student = mongoose.model('Students');
 
 passport.use(
     new GoogleStrategy({
@@ -12,9 +15,7 @@ passport.use(
         console.log('refreshToken:', refreshToken);
         console.log('profile:', profile);
         console.log('done:', done);
+        new Student({}).save();
 
-        // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        //     return cb(err, user);
-        // });
     }
 ));

@@ -1,11 +1,12 @@
 {
-  "name": "Hitch hikers guide to learning backend",
+  "name": "Hitch",
   "version": "1.0.0",
   "description": "Backend to Coen424 project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "engines": {
     "node": "9.0.0"

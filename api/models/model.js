@@ -7,7 +7,7 @@ const TaskSchema = new Schema({
         type: String,
         required: true
     },
-    Created_date: {
+    createdDate: {
         type: Date,
         default: Date.now
     },
@@ -21,11 +21,11 @@ const TaskSchema = new Schema({
 });
 
 const StudentSchema = new Schema({
-    username:{
-        type: String,
-        required: true,
-        unique: true
-    },
+    // username:{
+    //     type: String,
+    //     required: true,
+    //     unique: true
+    // },
     languages: {
         type: [{        //Todo verify array type mongo
             type: String,
@@ -33,8 +33,12 @@ const StudentSchema = new Schema({
         }],
         default: ['english']
     },
-    oauth_account: String,
-    is_logged_in: Boolean,
+    googleId: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    isLoggedIn: Boolean,
     likes: [{
         type:Schema.ObjectId,
         ref:'Video'
@@ -54,7 +58,7 @@ const ClassSchema = new Schema({
         type: Number,
         required: true
     },
-    video_list:[Number]
+    videoList:[Number]
 });
 
 const VideoSchema = new Schema({
@@ -62,14 +66,14 @@ const VideoSchema = new Schema({
         type: String,
         required: true
     },
-    thumbnail_url:{
+    thumbnailUrl:{
         type: String,
         required: true
     }
 });
 
 module.exports = mongoose.model('Tasks',TaskSchema);
-module.exports = mongoose.model('Student',StudentSchema);
-module.exports = mongoose.model('Class',ClassSchema);
-module.exports = mongoose.model('Video',VideoSchema);
+module.exports = mongoose.model('Students',StudentSchema);
+module.exports = mongoose.model('Classes',ClassSchema);
+module.exports = mongoose.model('Videos',VideoSchema);
 

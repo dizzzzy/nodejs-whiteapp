@@ -2,7 +2,7 @@
 const passport = require('passport');
 
 module.exports = function(app){
-    const todoList = require('../controllers/todoListControlller');
+    const todoList = require('../controllers/controlller');
 
     //todoList Routes
     app.route('/tasks')
