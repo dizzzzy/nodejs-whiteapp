@@ -1,6 +1,8 @@
 'use strict';
+const passport = require('passport');
+
 module.exports = function(app){
-    var todoList = require('../controllers/todoListControlller');
+    const todoList = require('../controllers/todoListControlller');
 
     //todoList Routes
     app.route('/tasks')
@@ -11,4 +13,19 @@ module.exports = function(app){
         .get(todoList.read_a_task)
         .put(todoList.update_a_task)
         .delete(todoList.delete_a_task);
+
+    //Oauth
+    app.route('/auth/google')
+        .get(
+            passport.authenticate('google',
+            {
+                scope: ['profile', 'email']
+            })
+        );
+
+    app.route('/auth/google/callback')
+        .get(
+          passport.authenticate('google')
+        );
+
 };

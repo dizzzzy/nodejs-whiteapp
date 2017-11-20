@@ -1,7 +1,7 @@
 {
-  "name": "todolistapi",
+  "name": "Hitch hikers guide to learning backend",
   "version": "1.0.0",
-  "description": "RESTful todoListApi",
+  "description": "Backend to Coen424 project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   "engines": {
     "node": "9.0.0"
   },
-  "author": "",
+  "author": "Dimitrios Ziavras",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.12.1"
@@ -20,6 +20,8 @@
     "@google-cloud/storage": "^1.4.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "mongoose": "^4.13.0"
+    "mongoose": "^4.13.0",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0"
   }
 }
