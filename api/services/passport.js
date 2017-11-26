@@ -7,10 +7,10 @@ passport.serializeUser(function(user, done){
    done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done){
-    Student.findById(id).then(function(user){
-       done(null, user);
-   });
+passport.deserializeUser(
+    async function(id, done){
+    const student = await Student.findById(id);
+    done(null, student);
 });
 
 passport.use(
@@ -19,20 +19,13 @@ passport.use(
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "/auth/google/callback"
     },
-    function(accessToken, refreshToken, profile, done) {
-        // console.log('accessToken:', accessToken);
-        // console.log('refreshToken:', refreshToken);
-        // console.log('profile:', profile);
-        Student.findOne({googleId:profile.id}).then(function(existingStudent){
+    async function(accessToken, refreshToken, profile, done) {
+        const existingStudent = await Student.findOne({googleId:profile.id});
             if(existingStudent) {
                 done(null, existingStudent);
             } else {
-                new Student({googleId:profile.id, languages: profile._json.language}).save()
-                    .then(function(student) {
-                        done(null, student);
-                    });
+                const student = await new Student({googleId:profile.id, languages: profile._json.language}).save();
+                done(null, student);
             }
-        });
-
     }
 ));
