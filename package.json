@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "engines": {
     "node": "9.0.0"
@@ -19,6 +21,8 @@
   "dependencies": {
     "@google-cloud/datastore": "^1.1.0",
     "@google-cloud/storage": "^1.4.0",
+    "concurrently": "^3.5.1",
+    "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "mongoose": "^4.13.0",

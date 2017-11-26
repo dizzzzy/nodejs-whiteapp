@@ -2,17 +2,17 @@
 const passport = require('passport');
 
 module.exports = function(app){
-    const todoList = require('../controllers/controlller');
+    const controller = require('../controllers/controlller');
 
     //todoList Routes
     app.route('/tasks')
-        .get(todoList.list_all_tasks)
-        .post(todoList.create_a_task);
+        .get(controller.list_all_tasks)
+        .post(controller.create_a_task);
 
     app.route('tasks/:taskId')
-        .get(todoList.read_a_task)
-        .put(todoList.update_a_task)
-        .delete(todoList.delete_a_task);
+        .get(controller.read_a_task)
+        .put(controller.update_a_task)
+        .delete(controller.delete_a_task);
 
     //Oauth
     app.route('/auth/google')
@@ -24,8 +24,12 @@ module.exports = function(app){
         );
 
     app.route('/auth/google/callback')
-        .get(
-          passport.authenticate('google')
-        );
+        .get(passport.authenticate('google'));
+
+    app.route('/api/current_user')
+        .get(controller.get_current_user);
+
+    app.route('/api/logout')
+        .get(controller.logout);
 
 };

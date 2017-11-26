@@ -29,13 +29,12 @@ const StudentSchema = new Schema({
     languages: {
         type: [{        //Todo verify array type mongo
             type: String,
-            enum: ['english', 'french', 'spanish', 'mandarin']
+            enum: ['en', 'fr', 'es', 'it', 'zh']
         }],
-        default: ['english']
+        default: ['es']
     },
     googleId: {
         type: String,
-        required: true,
         unique: true
     },
     isLoggedIn: Boolean,

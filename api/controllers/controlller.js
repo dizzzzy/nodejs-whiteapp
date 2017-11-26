@@ -47,4 +47,13 @@ exports.delete_a_task = function(req,res){
       });
 };
 
+exports.get_current_user = function(req,res){
+    res.send(req.user);
+};
+
+exports.logout = function(req,res){
+    req.logout();
+    res.send(req.user);
+};
+
 
