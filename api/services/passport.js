@@ -8,7 +8,6 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-    console.log("what id is this?:",id);
     Student.findById(id).then(function(user){
        done(null, user);
    });
