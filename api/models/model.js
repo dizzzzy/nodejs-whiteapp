@@ -21,11 +21,6 @@ const TaskSchema = new Schema({
 });
 
 const StudentSchema = new Schema({
-    // username:{
-    //     type: String,
-    //     required: true,
-    //     unique: true
-    // },
     languages: {
         type: [{        //Todo verify array type mongo
             type: String,
@@ -37,7 +32,10 @@ const StudentSchema = new Schema({
         type: String,
         unique: true
     },
-    isLoggedIn: Boolean,
+    classes:[{
+        type:Schema.ObjectId,
+        ref:'Class'
+    }],
     likes: [{
         type:Schema.ObjectId,
         ref:'Video'
@@ -53,11 +51,10 @@ const ClassSchema = new Schema({
         type: String,
         required: true
     },
-    number: {
-        type: Number,
-        required: true
-    },
-    videoList:[Number]
+    videoList:[{
+        type:Schema.ObjectId,
+        ref:'Video'
+    }]
 });
 
 const VideoSchema = new Schema({
@@ -71,8 +68,7 @@ const VideoSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Tasks',TaskSchema);
-module.exports = mongoose.model('Students',StudentSchema);
-module.exports = mongoose.model('Classes',ClassSchema);
-module.exports = mongoose.model('Videos',VideoSchema);
-
+module.exports = mongoose.model('Task',TaskSchema);
+module.exports = mongoose.model('Student',StudentSchema);
+module.exports = mongoose.model('Class',ClassSchema);
+module.exports = mongoose.model('Video',VideoSchema);

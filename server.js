@@ -25,7 +25,7 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
+console.log('app', app);
 mongoose.Promise = global.Promise;
 //mongoose.connect('mongodb://localhost/Tododb', function(err,database){
 mongoose.connect(config.url, function(err, database) {

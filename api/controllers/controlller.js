@@ -1,5 +1,7 @@
 const mongoose = require('mongoose'),
-    Task = mongoose.model('Tasks');
+    Task = mongoose.model('Task');
+    Student = mongoose.model('Student');
+    Class = mongoose.model('Class');
 
 exports.list_all_tasks = function(req,res) {
     Task.find({}, function(err,task){
@@ -53,7 +55,74 @@ exports.get_current_user = function(req,res){
 
 exports.logout = function(req,res){
     req.logout();
-    res.send(req.user);
+    //res.send(req.user);
+    res.redirect('/'); //Inside a callback… bulletproof!
+};
+
+exports.list_student_classes = function(req, res){   //probably wrong
+    Student.findOne({googleId: req.user.googleId}, function(err, student){
+        if(err)
+            res.send(err);
+        res.json(student.classes);
+    });
+};
+
+exports.list_all_classes = function(req, res){
+    Class.find({}, function(err,clas){
+        if(err)
+            res.send(err);
+        res.json(clas);
+    });
+};
+
+exports.create_a_class = function(req, res){
+    const new_class = new Class(req.body);
+    new_class.save(function(err, clas){
+        if(err)
+            res.send(err);
+        res.json(clas);
+    });
+};
+
+exports.read_a_class = function(req, res){
+    Class.findById(req.params.classId, function(err, clas){
+        if (err)
+            res.send(err);
+        res.json(clas);
+    });
+};
+
+exports.add_a_student_class = async function(req, res){
+
+    const existingClass = await Class.findOne({name: req.params.name});
+    if(existingClass) {
+        Student.findOne({googleId: req.user.googleId}, function(err, student){
+            student.classes.push(existingClass);
+            student.save(done);
+            if(err)
+                res.send(err);
+            res.json(student);
+        });
+    } else {
+        const clas = await new Class({name:req.params.name}).save();
+        Student.findOne({googleId: req.user.googleId}, function(err, student){
+            student.classes.push(clas);
+            student.save(done);
+            if(err)
+                res.send(err);
+            res.json(student);
+        });
+    }
+
+};
+
+exports.delete_a_student_class = function(req, res){
+};
+
+exports.add_or_remove_dislike = function(req, res){
+};
+
+exports.add_or_remove_like = function(req, res){
 };
 
 

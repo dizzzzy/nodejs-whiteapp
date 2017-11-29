@@ -6,7 +6,17 @@ export const fetchUser = function(){
         const res = await axios.get('/api/current_user');
         dispatch({
             type: FETCH_USER,
-            payload: res
+            payload: res.data
         });
     };
 };
+
+// export const fetchUserClasses = function(){
+//     return async function(dispatch){
+//         const res = await axios.get('/api/student_classes');
+//         dispatch({
+//             type: FETCH_USER_CLASSES,
+//             payload: res.data
+//         })
+//     }
+// };

@@ -24,12 +24,40 @@ module.exports = function(app){
         );
 
     app.route('/auth/google/callback')
-        .get(passport.authenticate('google'));
+        .get(passport.authenticate('google'), function(req, res){
+            res.redirect("/classes")
+        });
 
     app.route('/api/current_user')
         .get(controller.get_current_user);
 
     app.route('/api/logout')
         .get(controller.logout);
+
+    app.route('/api/classes') //get all classes
+        .get(controller.list_all_classes)   //DONE
+        .post(controller.create_a_class);  //DONE
+
+    app.route('/api/class/:classId')
+        .get(controller.read_a_class); //DONE
+
+    app.route('/api/student/classes')
+        .get(controller.list_student_classes) //DONE
+        .post(controller.add_a_student_class); //NEEDS TO BE TESTED
+
+    app.route('/api/student/classes/:classId')
+        .delete(controller.delete_a_student_class);
+
+    app.route('/api/student/video/dislike')  //This function should update the class video list
+        .post(controller.add_or_remove_dislike);
+
+    app.route('/api/student/video/like')
+        .post(controller.add_or_remove_like);   //This function should update class video list
+
+   // app.route('api/student/documents') //Student can see the documents he put has
+    // added GOOGLE CLOUD STORAGE MAYBE
+
+
+
 
 };
