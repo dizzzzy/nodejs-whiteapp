@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { WithContext as ReactTags } from 'react-tag-input';
+import {Icon} from 'react-materialize'
 
 const Countries = [
     "Afghanistan",
@@ -255,15 +256,38 @@ class TagsExample extends React.Component {
         return (
             <div className='container'>
                 <h3>Profile</h3>
-                <p>What classes are you currently enrolled in?</p>
-                <ReactTags tags={tags}
+                <p style={{fontSize: 16}}><Icon>perm_identity</Icon>&nbsp; Personal Information
+                    <br/>
+                    <ul style={{marginLeft: 30}}>
+                        <li>First Name:&nbsp;&nbsp; James</li>
+                        <li>Last Name: &nbsp;&nbsp; Ziavras</li>
+                        <li>Gender: &nbsp;&nbsp; male</li>
+                        <li>Home City:&nbsp;&nbsp; Montreal</li>
+                        <li>Country:&nbsp;&nbsp; Canada</li>
+                        <li>Email:&nbsp;&nbsp; dimitriosziavras@hotmail.com</li>
+                        <li>Phone Number:&nbsp;&nbsp; (514) 550 6323</li>
+                    </ul>
+                </p>
+
+                <p style={{fontSize: 16}}><Icon>work</Icon>&nbsp; Work
+                    <ul style={{marginLeft: 30}}>
+                        <li>Current Position:&nbsp;&nbsp; Full Stack developer</li>
+                        <li>Current Company: &nbsp;&nbsp; Freelancing</li>
+                    </ul>
+                </p>
+
+                <p style={{fontSize: 16}}><Icon>school</Icon>&nbsp; What classes are you currently enrolled in?</p>
+                <ReactTags
+                           tags={tags}
                            suggestions={suggestions}
                            handleDelete={this.handleDelete}
                            handleAddition={this.handleAddition}
                            handleDrag={this.handleDrag} />
                 <br/>
-                <p>What languages would you like your videos in?</p>
-                <ReactTags tags={tags}
+
+                <p style={{fontSize: 16}}><Icon>language</Icon>&nbsp; What languages would you like your videos in?</p>
+                <ReactTags
+                           tags={tags}
                            suggestions={suggestions}
                            handleDelete={this.handleDelete}
                            handleAddition={this.handleAddition}
