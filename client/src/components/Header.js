@@ -20,16 +20,16 @@ class Header extends Component{
                 const data = (
                     <span>
                         <ul className="right hide-on-med-and-down">
-                            <li><a href="sass.html"><i className="material-icons">search</i></a></li>
-                            <li><a href="badges.html"><i className="material-icons">view_module</i></a></li>
-                           <Dropdown options={{belowOrigin: true, hover: true}} trigger={
+                            <li><Link to={this.props.auth ? '/search':'/'}><i className="material-icons">search</i></Link></li>
+                            <li><Link to={this.props.auth ? '/classes':'/'}><i className="material-icons">view_module</i></Link></li>
+                           <Dropdown options={{belowOrigin: true, hover: true}} className="fit-width" trigger={
                                <li className="dropdown">
                                <a className='dropdown-button' href='/#'>
                                    <i className="material-icons">person</i>
                                </a>
                                </li>}>
                                <li><Link to={this.props.auth ? '/profile' : '/'}>My Profile</Link></li>
-                               <li><a href="/#">My Documents</a></li>
+                               <li><Link to={this.props.auth ? '/classes':'/'}>My Documents</Link></li>
                                <li className="divider"></li>
                                <li><a href="/api/logout">Logout</a></li>
                            </Dropdown>

@@ -2,7 +2,7 @@
 const passport = require('passport');
 
 module.exports = function(app){
-    const controller = require('../controllers/controlller');
+    const controller = require('../controllers/controller');
 
     //todoList Routes
     app.route('/tasks')
@@ -43,16 +43,14 @@ module.exports = function(app){
 
     app.route('/api/student/classes')
         .get(controller.list_student_classes) //DONE
-        .post(controller.add_a_student_class); //NEEDS TO BE TESTED
+        .post(controller.add_a_student_class); //DONE
 
     app.route('/api/student/classes/:classId')
-        .delete(controller.delete_a_student_class);
+        .delete(controller.delete_a_student_class); //NEEDS TO BE IMPLEMENTED
 
-    app.route('/api/student/video/dislike')  //This function should update the class video list
-        .post(controller.add_or_remove_dislike);
-
-    app.route('/api/student/video/like')
+    app.route('/api/student/class/like')
         .post(controller.add_or_remove_like);   //This function should update class video list
+                                                //Requires (videoId, classId)
 
    // app.route('api/student/documents') //Student can see the documents he put has
     // added GOOGLE CLOUD STORAGE MAYBE

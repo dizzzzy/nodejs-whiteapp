@@ -5,12 +5,11 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from "./Landing";
-import ChipExampleArray from "./ChipExampleArray";
-import TagsExample from "./TagsExample"
+import SpecificClass from "./SpecificClass"
+import ClassSelection from "./ClassSelection"
+import Profile from "./Profile"
 import YoutubeSearch from "./Youtube"
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
-const Profile = () => <h2>Profile</h2>;
+const MyClasses = () => <h2>My Classes</h2>;
 
 class App extends Component{
     componentDidMount(){
@@ -25,10 +24,12 @@ class App extends Component{
                 <BrowserRouter>
                     <div>
                         <Header/>
-                        <Route exact path="/" component={YoutubeSearch}/>
-                        <Route exact path="/classes" component={Dashboard}/>
-                        <Route exact path="/videos/new" component={SurveyNew}/>
-                        <Route exact path="/profile" component={TagsExample}/>
+                        <Route exact path="/" component={Landing}/>
+                        <Route exact path="/search" component={YoutubeSearch}/>
+                        <Route exact path="/classes" component={MyClasses}/>
+                        <Route exact path="/classes" component={ClassSelection}/>
+                        <Route exact path="/classes/:className" component={SpecificClass}/>
+                        <Route exact path="/profile" component={Profile}/>
                     </div>
                 </BrowserRouter>
             </div>

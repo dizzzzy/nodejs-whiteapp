@@ -32,18 +32,8 @@ const StudentSchema = new Schema({
         type: String,
         unique: true
     },
-    classes:[{
-        type:Schema.ObjectId,
-        ref:'Class'
-    }],
-    likes: [{
-        type:Schema.ObjectId,
-        ref:'Video'
-    }],
-    dislikes: [{
-        type:Schema.ObjectId,
-        ref:'Video'
-    }]
+    classes:[Schema.Types.Mixed] //object of class with name and id and within a list of likes of object video with name and id
+    // likes: [{type: Schema.Types.Mixed }], //object of video with name and id
 });
 
 const ClassSchema = new Schema({
@@ -51,10 +41,7 @@ const ClassSchema = new Schema({
         type: String,
         required: true
     },
-    videoList:[{
-        type:Schema.ObjectId,
-        ref:'Video'
-    }]
+    videoList:[Schema.Types.Mixed] //object of video id and number of likes
 });
 
 const VideoSchema = new Schema({
