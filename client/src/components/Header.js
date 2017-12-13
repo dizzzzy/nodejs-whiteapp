@@ -29,7 +29,7 @@ class Header extends Component{
                                </a>
                                </li>}>
                                <li><Link to={this.props.auth ? '/profile' : '/'}>My Profile</Link></li>
-                               <li><Link to={this.props.auth ? '/classes':'/'}>My Documents</Link></li>
+                               <li><Link to={this.props.auth ? '/classes':'/'}>My Classes</Link></li>
                                <li className="divider"></li>
                                <li><a href="/api/logout">Logout</a></li>
                            </Dropdown>

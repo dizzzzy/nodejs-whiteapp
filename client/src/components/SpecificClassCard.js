@@ -1,4 +1,3 @@
-/*
 import React, { Component } from 'react'
 import { Card } from 'semantic-ui-react'
 import {connect} from 'react-redux'
@@ -12,8 +11,10 @@ import SpecificClassContent from './SpecificClassContent'
 export default class SpecificClassCard extends Component{
   constructor(props) {
     super(props);
+    console.log('SpecificClassCard props', this.props);
     this.state = {
       videoId: this.props.videoId,
+      numberLikes: this.props.numberLikes,
       key: this.props.key
     };
   }
@@ -30,37 +31,24 @@ export default class SpecificClassCard extends Component{
   }
 
   render() {
-    return(
+    return (
       <Card className="flex-item">
         <Card.Content className="iframe-parent">
           <iframe className='video iframe-dim'
-                  src={"//www.youtube.com/embed/" + this.state.videoId}
+                  src={"//www.youtube.com/embed/" + this.props.videoId}
                   frameBorder="0"
                   allowFullScreen>
           </iframe>
         </Card.Content>
         <Card.Content extra>
-          <SpecificClassContent videoId={this.state.videoId} key={this.state.key}/>
+          <SpecificClassContent videoId={this.props.videoId} numberLikes={this.props.numberLikes} key={this.state.key}/>
         </Card.Content>
-      </Card>
-    );
+      </Card> );
   }
 }
-/!*
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchClassLikes: UserActions.fetchClassLikes
-  }, dispatch)
-}
-
-function mapStateToProps(state) {
-  return {
-    userClasses: state.auth.userClasses
-  }
-}*!/
 
 
 
 
 
-*/
+

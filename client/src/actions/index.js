@@ -48,18 +48,10 @@ export const fetchClassLikes = function(classId){  //fetches class likes
     return async function(dispatch){
         const res = await axios.get(urlString);
         console.log(res);
-        if(res.data.hasOwnProperty("likeList")){
           dispatch({
             type: FETCH_CLASS_LIKES,
-            payload: res.data.videoList
+            payload: res.data
           })
-        }else{
-          dispatch({
-            type: FETCH_CLASS_LIKES,
-            payload: null
-          })
-        }
-
     }
 };
 

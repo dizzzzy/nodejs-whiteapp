@@ -1,4 +1,3 @@
-/*
 import React, { Component } from 'react'
 import { Label, Icon } from 'semantic-ui-react'
 import _isEqual from 'lodash/isEqual';
@@ -8,10 +7,10 @@ import _isEqual from 'lodash/isEqual';
 export default class SpecificClassContent extends Component{
   constructor(props) {
     super(props);
-    this.props.fetchUserClasses();
     this.state = {
       key: this.props.key,
       videoId: this.props.videoId,
+      numberLikes: this.props.numberLikes,
       likes:null
     };
   }
@@ -27,11 +26,11 @@ export default class SpecificClassContent extends Component{
 
   render(){
     let data =null;
-    if(this.props.userClasses){
+    if(this.props.numberLikes){
       data = (
         <div>
           <Label>
-            <Icon name='heart' /> 23
+            Total likes <Icon name='heart' />{this.props.numberLikes}
           </Label>
         </div>
       );
@@ -40,4 +39,3 @@ export default class SpecificClassContent extends Component{
   }
 
 }
-*/

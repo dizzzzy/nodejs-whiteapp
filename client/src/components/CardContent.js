@@ -89,7 +89,6 @@ class CardContent extends Component{
           onClick={this.handleClick}
           content='Like'
           icon='heart'
-          label={{ basic: true, color: 'red', pointing: 'left', content: '2,048' }}
         />
       </div>
       );
@@ -101,14 +100,14 @@ class CardContent extends Component{
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     fetchUserClasses: UserActions.fetchUserClasses,
-    fetchClassLikes: UserActions.fetchClassLikes,
     addStudentClassLike: UserActions.addStudentClassLike
   }, dispatch)
 }
 
 function mapStateToProps(state) {
   return {
-    userClasses: state.auth.userClasses
+    userClasses: state.auth.userClasses,
+    videoList: state.auth.videoList
   }
 }
 

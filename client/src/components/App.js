@@ -28,7 +28,7 @@ class App extends Component{
                         <Route exact path="/search" component={YoutubeSearch}/>
                         <Route exact path="/classes" component={MyClasses}/>
                         <Route exact path="/classes" component={ClassSelection}/>
-                        <Route exact path="/classes/:className" component={SpecificClass}/>
+                        <Route exact path="/classes/:classId" component={SpecificClass}/>
                         <Route exact path="/profile" component={Profile}/>
                     </div>
                 </BrowserRouter>

@@ -1,37 +1,50 @@
-/*
 import React, {Component} from 'react';
 import {Card} from 'react-materialize'
 import * as UserActions from '../actions'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import SpecificClassCard from './SpecificClassCard'
+import _isEqual from 'lodash/isEqual';
+
 
 class SpecificClass extends Component{
 
     constructor(props) {
       super(props);
-      this.props.fetchClassLikes(this.props.match.params.name);
+      console.log('this.props.match.params',this.props.match.params);
+      this.props.fetchClassLikes(this.props.match.params.classId);
       this.state = {
-          className: this.props.match.params.name
+        classId: this.props.match.params.classId,
+        videoList: null
       };
     }
 
-    componentDidMount(){
-    };
 
-    render(){
-      let youtubeCardList;
-      if(this.state.videoList)
+  componentWillReceiveProps(nextProps) {
+    if(!_isEqual(nextProps, this.state)){
+      this.setState(nextProps);
+    }
+  }
+
+  render(){
+      let specificClassCardList;
+      if(this.props.videoList)
       {
-        youtubeCardList = this.state.videoList.youTube.map((result, index) =>{
+        console.log('I got the videoList', this.props.videoList);
+        specificClassCardList = this.props.videoList.map((result, index) =>{
           return(<SpecificClassCard
-            videoId={result.id.videoId}
+            videoId={result.videoId}
+            numberLikes={result.numberLikes}
             key={index} />);
         });
+        console.log('specificClassCardList', specificClassCardList);
       }
         return (
-          <div className="flex-container">
-            {youtubeCardList}
+          <div>
+            <h2>List of all liked videos</h2>
+            <div className="flex-container">
+              {specificClassCardList}
+            </div>
           </div>
         );
     }
@@ -51,10 +64,10 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpecificClass);
-*/
 
+/*
 import React from 'react'
 
 export default function SpecificClass(props) {
   return <h1>{props.match.params.className}</h1>
-}
+}*/

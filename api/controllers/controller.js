@@ -88,6 +88,7 @@ exports.read_a_class = function(req, res){
     Class.findById(req.params.classId, function(err, clas){
         if (err)
             res.send(err);
+        console.log('we found the class',clas);
         res.json(clas);
     });
 };

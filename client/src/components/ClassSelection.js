@@ -3,6 +3,7 @@ import {Card} from 'react-materialize'
 import * as UserActions from '../actions'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
+import _isEqual from 'lodash/isEqual';
 import $ from 'jquery'
 
 class ClassSelection extends Component{
@@ -20,6 +21,11 @@ class ClassSelection extends Component{
         console.log("this.state.tags", this.state.tags);
     }
 
+      componentWillReceiveProps(nextProps) {
+        if(!_isEqual(nextProps, this.state)){
+          this.setState(nextProps);
+        }
+      }
 
     render(){
         const { suggestions } = this.state;
@@ -36,7 +42,7 @@ class ClassSelection extends Component{
                     className='blue-grey darken-1'
                     textClassName='white-text'
                     title={obj.text}
-                    actions={[<a href={'/classes/'+ obj.text}>View {obj.text} documents</a>]}>
+                    actions={[<a href={'/classes/'+ obj.id}>View {obj.text} documents</a>]}>
                     </Card>
                 </div>
                 );

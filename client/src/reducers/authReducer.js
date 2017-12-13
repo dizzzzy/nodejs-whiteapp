@@ -1,11 +1,11 @@
 import { FETCH_USER, FETCH_USER_CLASSES, ADD_USER_CLASSES, ADD_STUDENT_CLASS_LIKE, FETCH_CLASS_LIKES} from "../actions/types";
 
 const initialState = {
-  userClasses: []
+  userClasses: [],
+  videoList: []
 };
 
 export default function(state = initialState, action){
-    console.log(action);
     switch(action.type){
       case FETCH_USER:
           return action.payload || false;
@@ -29,9 +29,8 @@ export default function(state = initialState, action){
           });
           return {...state, userClasses: student_class};
       case FETCH_CLASS_LIKES:
-        let class_likes;
-        console.log('fetch_class_likes action payload',action.payload);
-        return {...state};
+        console.log('fetch_class_likes action payload videoList',action.payload.videoList);
+        return {...state, videoList: action.payload.videoList};
       default:
           return state;
     }
